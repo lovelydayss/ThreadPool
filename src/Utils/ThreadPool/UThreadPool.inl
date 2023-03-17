@@ -1,0 +1,24 @@
+#ifndef UTHREADPOOL_INL
+#define UTHREADPOOL_INL
+
+#include "UThreadPool.h"
+
+THREADPOOL_NAMESPACE_BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+THREADPOOL_NAMESPACE_END
+
+#endif
