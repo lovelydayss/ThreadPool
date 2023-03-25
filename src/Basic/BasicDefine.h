@@ -23,7 +23,7 @@ using BIGBOOL=int;
 using FLOAT=float;
 using DOUBLE=double;
 using CONSTR=const char*;
-using SIZE=size_t;
+using SIZE = size_t;
 
 THREADPOOL_NAMESPACE_END
 

@@ -3,12 +3,19 @@
 
 #include <iostream>
 #include <string>
+#include <mutex>
 
 #include "../Basic/BasicInclude.h"
 #include "UAllocator.h"
 #include "UtilsFunction.h"
 
 THREADPOOL_NAMESPACE_BEGIN
+
+using READ_LOCK = std::unique_lock<std::mutex>;
+using WRITE_LOCK = std::unique_lock<std::mutex>;
+
+using LOCK_GUARD = std::lock_guard<std::mutex>;
+using UNIQUE_LOCK = std::unique_lock<std::mutex>;
 
 // 分支预测优化
 #ifdef _ENABLE_LIKELY_
@@ -71,7 +78,7 @@ static std::mutex g_check_status_mtx;
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));                 \
 
 #define SLEEP_SECOND(s)                                                         \
-    std::this_thread::sleep_for(std::chrono::seconds(s));                       \
+    std::this_thread::sleep_for(std::chrono::seconds(s));
 
 THREADPOOL_NAMESPACE_END
 

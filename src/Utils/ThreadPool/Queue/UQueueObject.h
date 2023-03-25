@@ -1,6 +1,7 @@
 #ifndef UQUEUEOBJECT_H
 #define UQUEUEOBJECT_H
 
+#include <condition_variable>
 #include <mutex>
 
 #include "../UThreadObject.h"

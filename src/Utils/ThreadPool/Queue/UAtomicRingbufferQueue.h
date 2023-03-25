@@ -38,7 +38,7 @@ public:
     Void push(const TImpl &value)
     {
         {
-            UNIQUE_LOCK(mutex_);
+            UNIQUE_LOCK lk(mutex_);
 
             if (isFull())
             {
@@ -46,15 +46,16 @@ public:
                               { return !isFull(); });
             }
 
-        ring_buffer_queue_[tail_] = std::move(make_unique<TImpl>(value);
+        ring_buffer_queue_[tail_] = std::move(make_unique<TImpl>(value));
         tail_=(tail_+1)%capacity;
         }
 
         pop_cv_.notify_one();
     }
 
-    // 等待弹出信息
-    CVoid waitPop(TImpl &value)
+	// 等待弹出信息
+	template <class TImpl = T>
+    Void waitPop(TImpl &value)
     {
         {
         UNIQUE_LOCK lk(mutex_);
@@ -62,7 +63,7 @@ public:
         if (isEmpty())
         {
             pop_cv_.wait(lk, [this]()
-                         { return !isEmpty() });
+                         { return !isEmpty(); });
         }
 
         value = (*ring_buffer_queue_[head_]);

@@ -5,6 +5,7 @@
 #include <chrono>
 #include <cstdarg>
 #include <ctime>
+#include <iostream>
 #include <mutex>
 
 #include "../Basic/BasicInclude.h"

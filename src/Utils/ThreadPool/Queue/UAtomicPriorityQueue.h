@@ -34,7 +34,7 @@ public:
 
         LOCK_GUARD lk(mutex_);
 
-        if(priority_queue_.empty() || MAX_POOL_BATCH_SIZE <= 0)
+        if(priority_queue_.empty() || maxPoolBatchSize <= 0)
         {
             return false;
         }
@@ -51,15 +51,15 @@ public:
     // 传入数据
     Void push(T&& value, int priority)
     {
-        std::unique_ptr<T> task(make_unique(std::move(value),priority));
+        std::unique_ptr<T> task(make_unique<T>(std::move(value),priority));
 
-        LOCK_GUARD(mutex_);
+        LOCK_GUARD lk(mutex_);
         priority_queue_.push(std::move(task));
     }
 
     // 判断队列是否为空
     Bool empty(){
-        LOCK_GUARD(mutex_);
+        LOCK_GUARD lk(mutex_);
         return priority_queue_.empty();
     }
 

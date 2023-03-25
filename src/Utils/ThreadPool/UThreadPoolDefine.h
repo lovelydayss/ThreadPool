@@ -2,19 +2,12 @@
 #define UTHREADPOOLDEFINE
 
 #include <thread>
-#include <mutex>
 
 #include <memory>
 
 #include "../UtilsDefine.h"
 
 THREADPOOL_NAMESPACE_BEGIN
-
-using READ_LOCK = std::unique_lock<std::mutex>;
-using WRITE_LOCK = std::unique_lock<std::mutex>;
-
-using LOCK_GUARD = std::lock_guard<std::mutex>;
-using UNIQUE_LOCK = std::unique_lock<std::mutex>;
 
 static const int CPU_NUM = (int)std::thread::hardware_concurrency();
 static const int THREAD_TYPE_PRIMARY = 1;

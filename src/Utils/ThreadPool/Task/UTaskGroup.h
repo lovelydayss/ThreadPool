@@ -3,8 +3,9 @@
 #define UTASKGROUP_H
 
 #include <utility>
+#include <vector>
 
-#include "../UThreadObject.h"
+#include "../UThreadPoolConfig.h"
 
 
 THREADPOOL_NAMESPACE_BEGIN
@@ -13,7 +14,7 @@ class UTaskGroup : public UThreadObject{
 public:
     explicit UTaskGroup() = default;
 
-    // 直接通过函数来申明taskGroup
+    // 直接通过函数来声明 taskGroup
     explicit UTaskGroup(DEFAULT_CONST_FUNCTION_REF task,
                         MSec ttl = MAX_BLOCK_TTL,
                         CALLBACK_CONST_FUNCTION_REF onFinished = nullptr) noexcept {

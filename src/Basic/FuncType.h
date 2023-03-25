@@ -49,7 +49,7 @@ enum class FunctionType {
 
 // 抛出异常 
 #define THROW_EXCEPTION(info)                                           \
-    throw Exception(info);                                              \
+    throw Exception(info);
 
 
 THREADPOOL_NAMESPACE_END

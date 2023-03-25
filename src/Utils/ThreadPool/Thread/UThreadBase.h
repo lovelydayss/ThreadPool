@@ -6,6 +6,7 @@
 #include "../UThreadObject.h"
 #include "../Queue/UQueueInclude.h"
 #include "../Task/UTaskInclude.h"
+#include "../UThreadPoolConfig.h"
 
 THREADPOOL_NAMESPACE_BEGIN
 
@@ -58,7 +59,7 @@ protected:
     {
         bool result = pool_task_queue_->tryPop(tasks, config_->max_pool_batch_size_);
 
-        if (!reset && THREAD_TYPE_SECONDARY == type_)
+        if (!result && THREAD_TYPE_SECONDARY == type_)
         {
             result = pool_priority_task_queue_->tryPop(tasks, 1); // 优先队列仅能弹出一个任务
         }
